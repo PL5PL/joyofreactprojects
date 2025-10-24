@@ -3,6 +3,10 @@ import React from "react";
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
 
+
+import GuessList from "../GuessList";
+import GuessInput from '../GuessInput';
+
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
@@ -10,34 +14,22 @@ console.info({ answer });
 
 function Game() {
   const [guess, setGuess] = React.useState("");
+  const [guessesList, setGuessesList] = React.useState([]);
 
-  return (
-    <form
-      className="guess-input-wrapper"
-      onSubmit={(event) => {
-        event.preventDefault();
-        
-        /* Log the entered value */
-        console.info( {guess})
-        /* Resets the input */
-        setGuess('');
-      }}
-    >
-      <label htmlFor="guess-input">Enter Guess</label>
-      <input 
-        id="guess-input" 
-        type="text"
-        value={guess}
-        onChange={(event) => {
-          setGuess(event.target.value.toUpperCase())
-        }}
-
-        /* from Solution */ 
-        pattern="[a-zA-Z]{5}"
-        title="5 Letter Word"
-        />
-    </form>
-  );
+  return (<>
+    
+    <GuessList 
+      guessesList={guessesList}
+      key={Math.random()}
+    />
+    <GuessInput 
+      guess={guess}
+      setGuess={setGuess}
+      guessesList={guessesList}
+      setGuessesList={setGuessesList}
+    />
+  </>
+  )
 }
 
 export default Game;
