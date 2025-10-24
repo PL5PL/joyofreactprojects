@@ -1,12 +1,12 @@
 import React from 'react';
 
-function GuessList({guessesList}) {
-  console.log(guessesList)
+function GuessList({guesses}) {
+  console.log(guesses)
   return (
   <div className="guess-results">
     {
-      guessesList.map( guess => (
-        <p className="guess" key={Math.random()}>
+      guesses.map( (guess, index) => (
+        <p className="guess" key={index}>
           {guess}
         </p>
       ))

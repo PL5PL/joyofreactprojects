@@ -1,26 +1,18 @@
 import React from 'react';
 
-function GuessInput({guess, setGuess, guessesList, setGuessesList}) {
+function GuessInput({handleSubmitGuess}) {
   
+  const [tentativeGuess, setTentativeGuess] = React.useState('');
 
   function handleSubmit(event) {
         event.preventDefault();
-        
-        /* Log the entered value */
-        console.info( {guess})
-        
-        /* Update Guesses List */
-        const nextGuesses = [...guessesList];
-        nextGuesses.push(guess);
-        setGuessesList(nextGuesses)
-        
-        /* Resets the input */
-        setGuess('');
+        handleSubmitGuess(tentativeGuess)
+        setTentativeGuess('');
   }
 
   function handleGuess(event) {
           const nextGuess = event.target.value.toUpperCase();
-          setGuess(nextGuess);
+          setTentativeGuess(nextGuess);
   }
 
   return    ( 
@@ -32,7 +24,7 @@ function GuessInput({guess, setGuess, guessesList, setGuessesList}) {
       <input 
         id="guess-input" 
         type="text"
-        value={guess} 
+        value={tentativeGuess} 
         onChange={handleGuess}
 
         /* from Solution */ 

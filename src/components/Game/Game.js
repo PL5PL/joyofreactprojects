@@ -13,20 +13,20 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [guess, setGuess] = React.useState("");
-  const [guessesList, setGuessesList] = React.useState([]);
+  const [guesses, setGuesses] = React.useState([]);
+
+
+  function handleSubmitGuess(tentativeGuess) {
+    setGuesses([...guesses, tentativeGuess]);
+  }
 
   return (<>
     
     <GuessList 
-      guessesList={guessesList}
-      key={Math.random()}
+      guesses={guesses}
     />
     <GuessInput 
-      guess={guess}
-      setGuess={setGuess}
-      guessesList={guessesList}
-      setGuessesList={setGuessesList}
+      handleSubmitGuess={handleSubmitGuess}
     />
   </>
   )
